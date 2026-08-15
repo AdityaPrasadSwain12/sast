@@ -1,0 +1,68 @@
+scanners:
+  opengrep:
+    enabled: true
+    image: sast-scan/opengrep:latest
+    config:
+      - rules/opengrep/community/apex
+      - rules/opengrep/community/bash
+      - rules/opengrep/community/c
+      - rules/opengrep/community/clojure
+      - rules/opengrep/community/csharp
+      - rules/opengrep/community/dockerfile
+      - rules/opengrep/community/elixir
+      - rules/opengrep/community/generic
+      - rules/opengrep/community/go
+      - rules/opengrep/community/html
+      - rules/opengrep/community/java
+      - rules/opengrep/community/javascript
+      - rules/opengrep/community/json
+      - rules/opengrep/community/kotlin
+      - rules/opengrep/community/php
+      - rules/opengrep/community/python
+      - rules/opengrep/community/ruby
+      - rules/opengrep/community/rust
+      - rules/opengrep/community/scala
+      - rules/opengrep/community/solidity
+      - rules/opengrep/community/swift
+      - rules/opengrep/community/terraform
+      - rules/opengrep/community/typescript
+      - rules/opengrep/community/yaml
+      - rules/opengrep/community/problem-based-packs
+      - rules/opengrep/custom/security.yaml
+    timeout_seconds: 900
+    network: none
+    auto_select_rule_sources: true
+
+  trivy:
+    enabled: true
+    image: aquasec/trivy:latest
+    scanners:
+      - vuln
+      - secret
+      - misconfig
+    timeout_seconds: 600
+    network: bridge
+    skip_db_update: false
+
+scan:
+  timeout_seconds: 600
+  exclude:
+    - .git
+    - node_modules
+    - .venv
+    - venv
+    - __pycache__
+    - dist
+    - build
+    - target
+
+policy:
+  fail_on: HIGH
+
+report:
+  formats:
+    - console
+    - json
+    - html
+    - sarif
+  output_dir: reports

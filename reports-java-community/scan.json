@@ -1,0 +1,1054 @@
+{
+  "config": {
+    "policy": {
+      "fail_on": "HIGH"
+    },
+    "report": {
+      "formats": [
+        "console",
+        "json",
+        "html",
+        "sarif"
+      ],
+      "output_dir": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-java-community"
+    },
+    "scan": {
+      "exclude": [
+        ".git",
+        "node_modules",
+        ".venv",
+        "venv",
+        "__pycache__",
+        "dist",
+        "build",
+        "target"
+      ]
+    },
+    "scanners": {
+      "opengrep": {
+        "config": [
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\apex",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\bash",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\c",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\clojure",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\csharp",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\dockerfile",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\elixir",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\generic",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\go",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\html",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\java",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\javascript",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\json",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\kotlin",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\php",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\python",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\ruby",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\rust",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\scala",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\solidity",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\swift",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\terraform",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\typescript",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\yaml",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\community\\problem-based-packs",
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\custom\\security.yaml"
+        ],
+        "enabled": true,
+        "image": "sast-scan/opengrep:latest",
+        "network": "none"
+      },
+      "trivy": {
+        "enabled": true,
+        "image": "aquasec/trivy:latest",
+        "network": "bridge",
+        "scanners": [
+          "vuln",
+          "secret",
+          "misconfig"
+        ],
+        "skip_db_update": false
+      }
+    }
+  },
+  "coverage": {
+    "binary_files_skipped_for_line_count": 0,
+    "bytes_scanned": 1751,
+    "excluded_patterns": [
+      ".git",
+      "node_modules",
+      ".venv",
+      "venv",
+      "__pycache__",
+      "dist",
+      "build",
+      "target"
+    ],
+    "extensions": {
+      ".java": 1
+    },
+    "files_scanned": 1,
+    "languages": {
+      "Java": 1
+    },
+    "lines_scanned": 48
+  },
+  "errors": [],
+  "findings": [
+    {
+      "category": "SAST",
+      "code_snippet": "    private static final String ADMIN_PASSWORD = \"SuperSecret123\";",
+      "column_end": 66,
+      "column_start": 39,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-798"
+      ],
+      "description": "Potential hardcoded secret detected. Rotate the value if it is real.",
+      "file": "target.java",
+      "finding_id": "opengrep-228bebad95d56fb335d78196",
+      "fingerprint": "228bebad95d56fb335d78196",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 8,
+      "line_start": 8,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A07:2021-Identification and Authentication Failures"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "cwe": "CWE-798",
+          "owasp": "A07:2021-Identification and Authentication Failures"
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "806cd96beb037530a482f035c12b104412a77cd707cdd0a488faea8cbb53f4ba9d820095804b96c942aacc7b624e1803cf297d81407b98118be0f580abdb48ea_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.generic.hardcoded-secret",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Potential hardcoded secret detected. Rotate the value if it is real."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    private static final String ADMIN_PASSWORD = \"SuperSecret123\";",
+      "column_end": 67,
+      "column_start": 39,
+      "confidence": "LOW",
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-798: Use of Hard-coded Credentials"
+      ],
+      "description": "A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).",
+      "file": "target.java",
+      "finding_id": "opengrep-b86b600c5eae937c5180f22f",
+      "fingerprint": "b86b600c5eae937c5180f22f",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 8,
+      "line_start": 8,
+      "original_category": "security",
+      "original_severity": "INFO",
+      "owasp": [
+        "A07:2021 - Identification and Authentication Failures"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "confidence": "LOW",
+          "cwe": [
+            "CWE-798: Use of Hard-coded Credentials"
+          ],
+          "cwe2021-top25": true,
+          "cwe2022-top25": true,
+          "impact": "MEDIUM",
+          "likelihood": "LOW",
+          "owasp": [
+            "A07:2021 - Identification and Authentication Failures"
+          ],
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+          ],
+          "source-rule-url": "https://github.com/zricethezav/gitleaks/tree/master/cmd/generate/config/rules",
+          "subcategory": [
+            "vuln"
+          ],
+          "technology": [
+            "gitleaks"
+          ]
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "b2f2f199cd57561263f99b3f99b28b115c8c3d7dab4e12646f9083d696febe3768b4bcb863784adf531ab5a315f2fc99b4d09df12eccfa191fc3317c1dfd24d5_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.community.generic.secrets.gitleaks.hashicorp-tf-password",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "INFO",
+      "status": "OPEN",
+      "title": "A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module)."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "            String query = \"SELECT * FROM users WHERE id = \" + userId;\n            ResultSet rs = stmt.executeQuery(query);",
+      "column_end": 53,
+      "column_start": 13,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-89"
+      ],
+      "description": "Possible SQL injection: SQL query is built with string concatenation and executed.",
+      "file": "target.java",
+      "finding_id": "opengrep-f75ec4928179637b65ad7d7d",
+      "fingerprint": "f75ec4928179637b65ad7d7d",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 21,
+      "line_start": 20,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A03:2021-Injection"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "cwe": "CWE-89",
+          "owasp": "A03:2021-Injection",
+          "references": [
+            "https://cwe.mitre.org/data/definitions/89.html"
+          ],
+          "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL."
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "0dfe46a8481f7c41b0ef8b233afd5bf48ee2fa3ded70a10885d07188c463e0c81d7c8c0a2d2de7246caf8f578514974984e31f84895bb0599e33167479e4af73_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://cwe.mitre.org/data/definitions/89.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL.",
+      "rule_id": "rules.opengrep.custom.java.sql-injection.string-concat-execute",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Possible SQL injection: SQL query is built with string concatenation and executed."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "            ResultSet rs = stmt.executeQuery(query);",
+      "column_end": 52,
+      "column_start": 28,
+      "confidence": "LOW",
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+      ],
+      "description": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.",
+      "file": "target.java",
+      "finding_id": "opengrep-3d34aa152cec2114dad172d3",
+      "fingerprint": "3d34aa152cec2114dad172d3",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 21,
+      "line_start": 21,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [
+        "A01:2017 - Injection",
+        "A03:2021 - Injection"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "confidence": "LOW",
+          "cwe": [
+            "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+          ],
+          "cwe2021-top25": true,
+          "cwe2022-top25": true,
+          "impact": "HIGH",
+          "likelihood": "LOW",
+          "owasp": [
+            "A01:2017 - Injection",
+            "A03:2021 - Injection"
+          ],
+          "references": [
+            "https://owasp.org/Top10/A03_2021-Injection"
+          ],
+          "subcategory": [
+            "audit"
+          ],
+          "technology": [
+            "jdbc"
+          ]
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "7a69b7aa56693192a493b98ad06ed49cb48e8af3d78b76f10d6bdbf2c5e8c7e9f1bc762bd5463ac32f313f781fef0ff91c79969bfdb08896e22e39e62dbb8e31_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://owasp.org/Top10/A03_2021-Injection"
+      ],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.community.java.lang.security.audit.sqli.jdbc-sqli",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "        } catch (Exception e) {\n            // VULN 3: Empty exception handler (CWE-390) \u2013 silently swallows all errors\n        }",
+      "column_end": 10,
+      "column_start": 11,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-390"
+      ],
+      "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+      "file": "target.java",
+      "finding_id": "opengrep-50199a7b4672e77e8dfd4963",
+      "fingerprint": "50199a7b4672e77e8dfd4963",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 28,
+      "line_start": 26,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "cwe": "CWE-390",
+          "references": [
+            "https://cwe.mitre.org/data/definitions/390.html"
+          ],
+          "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception."
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://cwe.mitre.org/data/definitions/390.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+      "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "            MessageDigest md = MessageDigest.getInstance(\"MD5\");",
+      "column_end": 64,
+      "column_start": 32,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-327"
+      ],
+      "description": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.",
+      "file": "target.java",
+      "finding_id": "opengrep-a507c8585058f2bbd161fd41",
+      "fingerprint": "a507c8585058f2bbd161fd41",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 34,
+      "line_start": 34,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "cwe": "CWE-327",
+          "references": [
+            "https://cwe.mitre.org/data/definitions/327.html"
+          ],
+          "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor."
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "7e87019244889a51c9b7df58674b819fbebedb7b04e0d59121bd5c98f2f1f6651d76d3bb62434fcd96a13fae647f29619ec9ce33edd7eb52acac0e1ad8642e30_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://cwe.mitre.org/data/definitions/327.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor.",
+      "rule_id": "rules.opengrep.custom.java.weak-crypto.md5",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "            MessageDigest md = MessageDigest.getInstance(\"MD5\");",
+      "column_end": 63,
+      "column_start": 58,
+      "confidence": "HIGH",
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-328: Use of Weak Hash"
+      ],
+      "description": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.",
+      "file": "target.java",
+      "finding_id": "opengrep-62c1712a9469f86cbd4172f8",
+      "fingerprint": "62c1712a9469f86cbd4172f8",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 34,
+      "line_start": 34,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [
+        "A03:2017 - Sensitive Data Exposure",
+        "A02:2021 - Cryptographic Failures"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "confidence": "HIGH",
+          "cwe": [
+            "CWE-328: Use of Weak Hash"
+          ],
+          "functional-categories": [
+            "crypto::search::hash-algorithm::java.security"
+          ],
+          "impact": "MEDIUM",
+          "likelihood": "MEDIUM",
+          "owasp": [
+            "A03:2017 - Sensitive Data Exposure",
+            "A02:2021 - Cryptographic Failures"
+          ],
+          "references": [
+            "https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+          ],
+          "source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_MESSAGE_DIGEST_MD5",
+          "subcategory": [
+            "vuln"
+          ],
+          "technology": [
+            "java"
+          ]
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "475add80e41168611184b9ac306f4b035709e73683ed664562a7421c540d51259fdd304d443298441f6d14a0013689c15a8a4a445ebe5aa86d56363dbddfad2f_0",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+      ],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.community.java.lang.security.audit.crypto.use-of-md5",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "        } catch (Exception e) {\n            // Another empty handler\n        }",
+      "column_end": 10,
+      "column_start": 11,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-390"
+      ],
+      "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+      "file": "target.java",
+      "finding_id": "opengrep-020e2a6a66af19351b828d72",
+      "fingerprint": "020e2a6a66af19351b828d72",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 39,
+      "line_start": 37,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [],
+      "package": null,
+      "raw_metadata": {
+        "engine_kind": "OSS",
+        "metadata": {
+          "category": "security",
+          "cwe": "CWE-390",
+          "references": [
+            "https://cwe.mitre.org/data/definitions/390.html"
+          ],
+          "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception."
+        },
+        "original_path": "/src/target.java",
+        "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_1",
+        "validation_state": "NO_VALIDATOR"
+      },
+      "references": [
+        "https://cwe.mitre.org/data/definitions/390.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+      "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+    }
+  ],
+  "metadata": {
+    "duration_seconds": 118.474,
+    "scan_id": "28c02b2f-2922-4f91-acc5-cac177f2f1e1",
+    "scan_root": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN",
+    "scanner_versions": {
+      "OpenGrep": "1.26.0",
+      "Trivy": "Version: 0.73.0",
+      "sast-scan": "0.1.0"
+    },
+    "started_at": "2026-08-09T08:07:23.875634+00:00",
+    "target": ".\\target.java",
+    "target_kind": "file"
+  },
+  "policy_fail_on": "HIGH",
+  "policy_failed": true,
+  "scanners": [
+    {
+      "dropped_finding_count": 0,
+      "duration_seconds": 109.646,
+      "errors": [],
+      "findings": [
+        {
+          "category": "SAST",
+          "code_snippet": "    private static final String ADMIN_PASSWORD = \"SuperSecret123\";",
+          "column_end": 66,
+          "column_start": 39,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-798"
+          ],
+          "description": "Potential hardcoded secret detected. Rotate the value if it is real.",
+          "file": "target.java",
+          "finding_id": "opengrep-228bebad95d56fb335d78196",
+          "fingerprint": "228bebad95d56fb335d78196",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 8,
+          "line_start": 8,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A07:2021-Identification and Authentication Failures"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "cwe": "CWE-798",
+              "owasp": "A07:2021-Identification and Authentication Failures"
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "806cd96beb037530a482f035c12b104412a77cd707cdd0a488faea8cbb53f4ba9d820095804b96c942aacc7b624e1803cf297d81407b98118be0f580abdb48ea_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.generic.hardcoded-secret",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Potential hardcoded secret detected. Rotate the value if it is real."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    private static final String ADMIN_PASSWORD = \"SuperSecret123\";",
+          "column_end": 67,
+          "column_start": 39,
+          "confidence": "LOW",
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-798: Use of Hard-coded Credentials"
+          ],
+          "description": "A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).",
+          "file": "target.java",
+          "finding_id": "opengrep-b86b600c5eae937c5180f22f",
+          "fingerprint": "b86b600c5eae937c5180f22f",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 8,
+          "line_start": 8,
+          "original_category": "security",
+          "original_severity": "INFO",
+          "owasp": [
+            "A07:2021 - Identification and Authentication Failures"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "confidence": "LOW",
+              "cwe": [
+                "CWE-798: Use of Hard-coded Credentials"
+              ],
+              "cwe2021-top25": true,
+              "cwe2022-top25": true,
+              "impact": "MEDIUM",
+              "likelihood": "LOW",
+              "owasp": [
+                "A07:2021 - Identification and Authentication Failures"
+              ],
+              "references": [
+                "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+              ],
+              "source-rule-url": "https://github.com/zricethezav/gitleaks/tree/master/cmd/generate/config/rules",
+              "subcategory": [
+                "vuln"
+              ],
+              "technology": [
+                "gitleaks"
+              ]
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "b2f2f199cd57561263f99b3f99b28b115c8c3d7dab4e12646f9083d696febe3768b4bcb863784adf531ab5a315f2fc99b4d09df12eccfa191fc3317c1dfd24d5_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.community.generic.secrets.gitleaks.hashicorp-tf-password",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "INFO",
+          "status": "OPEN",
+          "title": "A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module)."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "            String query = \"SELECT * FROM users WHERE id = \" + userId;\n            ResultSet rs = stmt.executeQuery(query);",
+          "column_end": 53,
+          "column_start": 13,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-89"
+          ],
+          "description": "Possible SQL injection: SQL query is built with string concatenation and executed.",
+          "file": "target.java",
+          "finding_id": "opengrep-f75ec4928179637b65ad7d7d",
+          "fingerprint": "f75ec4928179637b65ad7d7d",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 21,
+          "line_start": 20,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A03:2021-Injection"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "cwe": "CWE-89",
+              "owasp": "A03:2021-Injection",
+              "references": [
+                "https://cwe.mitre.org/data/definitions/89.html"
+              ],
+              "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL."
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "0dfe46a8481f7c41b0ef8b233afd5bf48ee2fa3ded70a10885d07188c463e0c81d7c8c0a2d2de7246caf8f578514974984e31f84895bb0599e33167479e4af73_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://cwe.mitre.org/data/definitions/89.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL.",
+          "rule_id": "rules.opengrep.custom.java.sql-injection.string-concat-execute",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Possible SQL injection: SQL query is built with string concatenation and executed."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "            ResultSet rs = stmt.executeQuery(query);",
+          "column_end": 52,
+          "column_start": 28,
+          "confidence": "LOW",
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+          ],
+          "description": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.",
+          "file": "target.java",
+          "finding_id": "opengrep-3d34aa152cec2114dad172d3",
+          "fingerprint": "3d34aa152cec2114dad172d3",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 21,
+          "line_start": 21,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [
+            "A01:2017 - Injection",
+            "A03:2021 - Injection"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "confidence": "LOW",
+              "cwe": [
+                "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+              ],
+              "cwe2021-top25": true,
+              "cwe2022-top25": true,
+              "impact": "HIGH",
+              "likelihood": "LOW",
+              "owasp": [
+                "A01:2017 - Injection",
+                "A03:2021 - Injection"
+              ],
+              "references": [
+                "https://owasp.org/Top10/A03_2021-Injection"
+              ],
+              "subcategory": [
+                "audit"
+              ],
+              "technology": [
+                "jdbc"
+              ]
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "7a69b7aa56693192a493b98ad06ed49cb48e8af3d78b76f10d6bdbf2c5e8c7e9f1bc762bd5463ac32f313f781fef0ff91c79969bfdb08896e22e39e62dbb8e31_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://owasp.org/Top10/A03_2021-Injection"
+          ],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.community.java.lang.security.audit.sqli.jdbc-sqli",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "        } catch (Exception e) {\n            // VULN 3: Empty exception handler (CWE-390) \u2013 silently swallows all errors\n        }",
+          "column_end": 10,
+          "column_start": 11,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-390"
+          ],
+          "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+          "file": "target.java",
+          "finding_id": "opengrep-50199a7b4672e77e8dfd4963",
+          "fingerprint": "50199a7b4672e77e8dfd4963",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 28,
+          "line_start": 26,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "cwe": "CWE-390",
+              "references": [
+                "https://cwe.mitre.org/data/definitions/390.html"
+              ],
+              "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception."
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://cwe.mitre.org/data/definitions/390.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+          "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "            MessageDigest md = MessageDigest.getInstance(\"MD5\");",
+          "column_end": 64,
+          "column_start": 32,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-327"
+          ],
+          "description": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.",
+          "file": "target.java",
+          "finding_id": "opengrep-a507c8585058f2bbd161fd41",
+          "fingerprint": "a507c8585058f2bbd161fd41",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 34,
+          "line_start": 34,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "cwe": "CWE-327",
+              "references": [
+                "https://cwe.mitre.org/data/definitions/327.html"
+              ],
+              "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor."
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "7e87019244889a51c9b7df58674b819fbebedb7b04e0d59121bd5c98f2f1f6651d76d3bb62434fcd96a13fae647f29619ec9ce33edd7eb52acac0e1ad8642e30_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://cwe.mitre.org/data/definitions/327.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor.",
+          "rule_id": "rules.opengrep.custom.java.weak-crypto.md5",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "            MessageDigest md = MessageDigest.getInstance(\"MD5\");",
+          "column_end": 63,
+          "column_start": 58,
+          "confidence": "HIGH",
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-328: Use of Weak Hash"
+          ],
+          "description": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.",
+          "file": "target.java",
+          "finding_id": "opengrep-62c1712a9469f86cbd4172f8",
+          "fingerprint": "62c1712a9469f86cbd4172f8",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 34,
+          "line_start": 34,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [
+            "A03:2017 - Sensitive Data Exposure",
+            "A02:2021 - Cryptographic Failures"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "confidence": "HIGH",
+              "cwe": [
+                "CWE-328: Use of Weak Hash"
+              ],
+              "functional-categories": [
+                "crypto::search::hash-algorithm::java.security"
+              ],
+              "impact": "MEDIUM",
+              "likelihood": "MEDIUM",
+              "owasp": [
+                "A03:2017 - Sensitive Data Exposure",
+                "A02:2021 - Cryptographic Failures"
+              ],
+              "references": [
+                "https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+              ],
+              "source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_MESSAGE_DIGEST_MD5",
+              "subcategory": [
+                "vuln"
+              ],
+              "technology": [
+                "java"
+              ]
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "475add80e41168611184b9ac306f4b035709e73683ed664562a7421c540d51259fdd304d443298441f6d14a0013689c15a8a4a445ebe5aa86d56363dbddfad2f_0",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+          ],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.community.java.lang.security.audit.crypto.use-of-md5",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "        } catch (Exception e) {\n            // Another empty handler\n        }",
+          "column_end": 10,
+          "column_start": 11,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-390"
+          ],
+          "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+          "file": "target.java",
+          "finding_id": "opengrep-020e2a6a66af19351b828d72",
+          "fingerprint": "020e2a6a66af19351b828d72",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 39,
+          "line_start": 37,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [],
+          "package": null,
+          "raw_metadata": {
+            "engine_kind": "OSS",
+            "metadata": {
+              "category": "security",
+              "cwe": "CWE-390",
+              "references": [
+                "https://cwe.mitre.org/data/definitions/390.html"
+              ],
+              "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception."
+            },
+            "original_path": "/src/target.java",
+            "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_1",
+            "validation_state": "NO_VALIDATOR"
+          },
+          "references": [
+            "https://cwe.mitre.org/data/definitions/390.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+          "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+        }
+      ],
+      "parsed_finding_count": 8,
+      "raw_finding_count": 8,
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-java-community\\raw\\28c02b2f-2922-4f91-acc5-cac177f2f1e1\\opengrep.json",
+      "scanner": "OpenGrep",
+      "status": "SUCCESS",
+      "version": "1.26.0",
+      "warnings": []
+    },
+    {
+      "dropped_finding_count": 0,
+      "duration_seconds": 8.823,
+      "errors": [],
+      "findings": [],
+      "parsed_finding_count": 0,
+      "raw_finding_count": 0,
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-java-community\\raw\\28c02b2f-2922-4f91-acc5-cac177f2f1e1\\trivy.json",
+      "scanner": "Trivy",
+      "status": "SUCCESS",
+      "version": "Version: 0.73.0",
+      "warnings": []
+    }
+  ],
+  "status": "FAILED",
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 2,
+    "INFO": 1,
+    "LOW": 0,
+    "MEDIUM": 5,
+    "TOTAL": 8,
+    "UNKNOWN": 0
+  },
+  "warnings": []
+}

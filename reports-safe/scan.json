@@ -1,0 +1,123 @@
+{
+  "config": {
+    "policy": {
+      "fail_on": "HIGH"
+    },
+    "report": {
+      "formats": [
+        "console",
+        "json",
+        "html",
+        "sarif"
+      ],
+      "output_dir": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-safe"
+    },
+    "scan": {
+      "exclude": [
+        ".git",
+        "node_modules",
+        ".venv",
+        "venv",
+        "__pycache__",
+        "dist",
+        "build",
+        "target"
+      ]
+    },
+    "scanners": {
+      "opengrep": {
+        "config": [
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\custom\\security.yaml"
+        ],
+        "enabled": true,
+        "image": "sast-scan/opengrep:latest",
+        "network": "none"
+      },
+      "trivy": {
+        "enabled": true,
+        "image": "aquasec/trivy:latest",
+        "network": "bridge",
+        "scanners": [
+          "vuln",
+          "secret",
+          "misconfig"
+        ],
+        "skip_db_update": false
+      }
+    }
+  },
+  "coverage": {
+    "binary_files_skipped_for_line_count": 0,
+    "bytes_scanned": 621,
+    "excluded_patterns": [
+      ".git",
+      "node_modules",
+      ".venv",
+      "venv",
+      "__pycache__",
+      "dist",
+      "build",
+      "target"
+    ],
+    "extensions": {
+      ".py": 1,
+      ".txt": 1
+    },
+    "files_scanned": 2,
+    "languages": {
+      "Python": 1,
+      "Python Dependencies": 1
+    },
+    "lines_scanned": 25
+  },
+  "errors": [],
+  "findings": [],
+  "metadata": {
+    "duration_seconds": 15.81,
+    "scan_id": "4a3da46e-3b3e-40ff-982a-f8f9ce4fce1b",
+    "scan_root": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\examples\\safe",
+    "scanner_versions": {
+      "OpenGrep": "1.26.0",
+      "Trivy": "Version: 0.73.0",
+      "sast-scan": "0.1.0"
+    },
+    "started_at": "2026-08-08T17:22:05.842709+00:00",
+    "target": ".\\examples\\safe",
+    "target_kind": "directory"
+  },
+  "policy_fail_on": "HIGH",
+  "policy_failed": false,
+  "scanners": [
+    {
+      "duration_seconds": 6.49,
+      "errors": [],
+      "findings": [],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-safe\\raw\\4a3da46e-3b3e-40ff-982a-f8f9ce4fce1b\\opengrep.json",
+      "scanner": "OpenGrep",
+      "status": "SUCCESS",
+      "version": "1.26.0",
+      "warnings": []
+    },
+    {
+      "duration_seconds": 9.318,
+      "errors": [],
+      "findings": [],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-safe\\raw\\4a3da46e-3b3e-40ff-982a-f8f9ce4fce1b\\trivy.json",
+      "scanner": "Trivy",
+      "status": "SUCCESS",
+      "version": "Version: 0.73.0",
+      "warnings": []
+    }
+  ],
+  "status": "SUCCESS",
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 0,
+    "TOTAL": 0,
+    "UNKNOWN": 0
+  },
+  "warnings": []
+}

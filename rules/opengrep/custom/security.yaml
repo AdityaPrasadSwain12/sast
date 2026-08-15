@@ -1,0 +1,158 @@
+rules:
+  - id: python.sql-injection.f-string-execute
+    message: "Possible SQL injection: f-string value is passed directly to a SQL execute call."
+    severity: ERROR
+    languages: [python]
+    pattern-regex: "\\.execute\\s*\\(\\s*f[\"']"
+    metadata:
+      category: security
+      cwe: "CWE-89"
+      owasp: "A03:2021-Injection"
+      references:
+        - "https://cwe.mitre.org/data/definitions/89.html"
+
+  - id: python.command-injection.shell-true
+    message: "Possible command injection: subprocess is called with shell=True."
+    severity: ERROR
+    languages: [python]
+    pattern-either:
+      - pattern: subprocess.call(..., shell=True, ...)
+      - pattern: subprocess.run(..., shell=True, ...)
+      - pattern: subprocess.Popen(..., shell=True, ...)
+      - pattern: os.system(...)
+    metadata:
+      category: security
+      cwe: "CWE-78"
+      owasp: "A03:2021-Injection"
+
+  - id: python.unsafe-deserialization.pickle-loads
+    message: "Unsafe deserialization: pickle.loads can execute attacker-controlled code."
+    severity: WARNING
+    languages: [python]
+    pattern: pickle.loads(...)
+    metadata:
+      category: security
+      cwe: "CWE-502"
+      owasp: "A08:2021-Software and Data Integrity Failures"
+
+  - id: python.weak-crypto.md5
+    message: "Weak cryptography: MD5 should not be used for security-sensitive hashing."
+    severity: WARNING
+    languages: [python]
+    pattern: hashlib.md5(...)
+    metadata:
+      category: security
+      cwe: "CWE-327"
+
+  - id: generic.hardcoded-secret
+    message: "Potential hardcoded secret detected. Rotate the value if it is real."
+    severity: ERROR
+    languages: [generic]
+    pattern-regex: "(?i)(api[_-]?key|secret|password|token)\\s*=\\s*['\"][A-Za-z0-9_\\-]{12,}['\"]"
+    metadata:
+      category: security
+      cwe: "CWE-798"
+      owasp: "A07:2021-Identification and Authentication Failures"
+
+  - id: java.sql-injection.string-concat-execute
+    message: "Possible SQL injection: SQL query is built with string concatenation and executed."
+    severity: ERROR
+    languages: [java]
+    patterns:
+      - pattern: |
+          String $QUERY = $SQL + $INPUT;
+          ...
+          $STMT.executeQuery($QUERY);
+      - metavariable-regex:
+          metavariable: $SQL
+          regex: (?i).*select|.*insert|.*update|.*delete|.*where
+    metadata:
+      category: security
+      cwe: "CWE-89"
+      owasp: "A03:2021-Injection"
+      remediation: "Use PreparedStatement with parameter binding instead of concatenating user input into SQL."
+      references:
+        - "https://cwe.mitre.org/data/definitions/89.html"
+
+  - id: java.sql-injection.inline-string-concat-execute
+    message: "Possible SQL injection: SQL string concatenation is passed directly to executeQuery."
+    severity: ERROR
+    languages: [java]
+    pattern: $STMT.executeQuery($SQL + $INPUT)
+    metadata:
+      category: security
+      cwe: "CWE-89"
+      owasp: "A03:2021-Injection"
+      remediation: "Use PreparedStatement with parameter binding instead of concatenating user input into SQL."
+
+  - id: java.weak-crypto.md5
+    message: "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+    severity: WARNING
+    languages: [java]
+    pattern: MessageDigest.getInstance("MD5")
+    metadata:
+      category: security
+      cwe: "CWE-327"
+      remediation: "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor."
+      references:
+        - "https://cwe.mitre.org/data/definitions/327.html"
+
+  - id: java.empty-catch.swallowed-exception
+    message: "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+    severity: WARNING
+    languages: [java]
+    pattern-regex: "catch\\s*\\([^)]*\\)\\s*\\{\\s*(?://[^\\n]*\\n\\s*)*\\}"
+    metadata:
+      category: security
+      cwe: "CWE-390"
+      remediation: "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception."
+      references:
+        - "https://cwe.mitre.org/data/definitions/390.html"
+
+  - id: c.buffer-overflow.gets
+    message: "Dangerous C function gets() can cause buffer overflow."
+    severity: ERROR
+    languages: [c]
+    pattern: gets(...)
+    metadata:
+      category: security
+      cwe: "CWE-120"
+      remediation: "Use fgets with an explicit buffer size and validate input length."
+      references:
+        - "https://cwe.mitre.org/data/definitions/120.html"
+
+  - id: c.buffer-overflow.unsafe-copy
+    message: "Potential buffer overflow: unsafe copy/format function is used without explicit bounds."
+    severity: ERROR
+    languages: [c]
+    pattern-either:
+      - pattern: strcpy(...)
+      - pattern: strcat(...)
+      - pattern: sprintf(...)
+    metadata:
+      category: security
+      cwe: "CWE-120"
+      remediation: "Use bounded APIs such as snprintf and validate destination buffer sizes."
+
+  - id: c.command-injection.system
+    message: "Possible command injection: system() executes shell commands."
+    severity: ERROR
+    languages: [c]
+    pattern: system(...)
+    metadata:
+      category: security
+      cwe: "CWE-78"
+      owasp: "A03:2021-Injection"
+      remediation: "Avoid shell execution. Use exec-family APIs with fixed arguments or a safe allowlist."
+
+  - id: c.weak-crypto.md5
+    message: "Weak cryptography: MD5 should not be used for security-sensitive hashing."
+    severity: WARNING
+    languages: [c]
+    pattern-either:
+      - pattern: MD5(...)
+      - pattern: EVP_md5(...)
+    metadata:
+      category: security
+      cwe: "CWE-327"
+      remediation: "Use SHA-256 or stronger for integrity use cases, and password-specific hashing for passwords."

@@ -1,0 +1,99 @@
+{
+  "config": {
+    "policy": {
+      "fail_on": "CRITICAL"
+    },
+    "report": {
+      "formats": [
+        "console",
+        "json",
+        "html",
+        "sarif"
+      ],
+      "output_dir": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-github"
+    },
+    "scan": {
+      "exclude": [
+        ".git",
+        "node_modules",
+        ".venv",
+        "venv",
+        "__pycache__",
+        "dist",
+        "build",
+        "target"
+      ]
+    },
+    "scanners": {
+      "opengrep": {
+        "config": [
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\custom\\security.yaml"
+        ],
+        "enabled": true,
+        "image": "sast-scan/opengrep:latest",
+        "network": "none"
+      },
+      "trivy": {
+        "enabled": true,
+        "image": "aquasec/trivy:latest",
+        "network": "bridge",
+        "scanners": [
+          "vuln",
+          "secret",
+          "misconfig"
+        ],
+        "skip_db_update": false
+      }
+    }
+  },
+  "errors": [],
+  "findings": [],
+  "metadata": {
+    "duration_seconds": 17.695,
+    "scan_id": "5d9b0743-85b5-4885-bd9b-a68dd6550b97",
+    "scan_root": "C:\\Users\\adity\\AppData\\Local\\Temp\\sast-scan-repo-ab4mcpr9\\repo",
+    "scanner_versions": {
+      "OpenGrep": "1.26.0",
+      "Trivy": "Version: 0.73.0",
+      "sast-scan": "0.1.0"
+    },
+    "started_at": "2026-08-08T17:06:15.559010+00:00",
+    "target": "https://github.com/octocat/Hello-World",
+    "target_kind": "github"
+  },
+  "policy_fail_on": "CRITICAL",
+  "policy_failed": false,
+  "scanners": [
+    {
+      "duration_seconds": 5.796,
+      "errors": [],
+      "findings": [],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-github\\raw\\5d9b0743-85b5-4885-bd9b-a68dd6550b97\\opengrep.json",
+      "scanner": "OpenGrep",
+      "status": "SUCCESS",
+      "version": "1.26.0",
+      "warnings": []
+    },
+    {
+      "duration_seconds": 8.938,
+      "errors": [],
+      "findings": [],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-github\\raw\\5d9b0743-85b5-4885-bd9b-a68dd6550b97\\trivy.json",
+      "scanner": "Trivy",
+      "status": "SUCCESS",
+      "version": "Version: 0.73.0",
+      "warnings": []
+    }
+  ],
+  "status": "SUCCESS",
+  "summary": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 0,
+    "TOTAL": 0,
+    "UNKNOWN": 0
+  },
+  "warnings": []
+}

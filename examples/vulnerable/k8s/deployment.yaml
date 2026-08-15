@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulnerable-app
+spec:
+  selector:
+    matchLabels:
+      app: vulnerable-app
+  template:
+    metadata:
+      labels:
+        app: vulnerable-app
+    spec:
+      containers:
+        - name: app
+          image: vulnerable-app:latest
+          securityContext:
+            privileged: true

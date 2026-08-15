@@ -1,0 +1,666 @@
+{
+  "config": {
+    "policy": {
+      "fail_on": "HIGH"
+    },
+    "report": {
+      "formats": [
+        "console",
+        "json",
+        "html",
+        "sarif"
+      ],
+      "output_dir": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-file"
+    },
+    "scan": {
+      "exclude": [
+        ".git",
+        "node_modules",
+        ".venv",
+        "venv",
+        "__pycache__",
+        "dist",
+        "build",
+        "target"
+      ]
+    },
+    "scanners": {
+      "opengrep": {
+        "config": [
+          "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\rules\\opengrep\\custom\\security.yaml"
+        ],
+        "enabled": true,
+        "image": "sast-scan/opengrep:latest",
+        "network": "none"
+      },
+      "trivy": {
+        "enabled": true,
+        "image": "aquasec/trivy:latest",
+        "network": "bridge",
+        "scanners": [
+          "vuln",
+          "secret",
+          "misconfig"
+        ],
+        "skip_db_update": false
+      }
+    }
+  },
+  "errors": [],
+  "findings": [
+    {
+      "category": "SAST",
+      "code_snippet": "API_KEY = \"sk_test_1234567890abcdef\"",
+      "column_end": 37,
+      "column_start": 1,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-798"
+      ],
+      "description": "Potential hardcoded secret detected. Rotate the value if it is real.",
+      "file": "app.py",
+      "finding_id": "opengrep-31d1b4b64eede048448aa045",
+      "fingerprint": "31d1b4b64eede048448aa045",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 7,
+      "line_start": 7,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A07:2021-Identification and Authentication Failures"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-798",
+        "owasp": "A07:2021-Identification and Authentication Failures"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.generic.hardcoded-secret",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Potential hardcoded secret detected. Rotate the value if it is real."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{username}'\")",
+      "column_end": 22,
+      "column_start": 11,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-89"
+      ],
+      "description": "Possible SQL injection: f-string value is passed directly to a SQL execute call.",
+      "file": "app.py",
+      "finding_id": "opengrep-1cd1322aa8a00b4de0bb8bd6",
+      "fingerprint": "1cd1322aa8a00b4de0bb8bd6",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 13,
+      "line_start": 13,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A03:2021-Injection"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-89",
+        "owasp": "A03:2021-Injection",
+        "references": [
+          "https://cwe.mitre.org/data/definitions/89.html"
+        ]
+      },
+      "references": [
+        "https://cwe.mitre.org/data/definitions/89.html"
+      ],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.python.sql-injection.f-string-execute",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Possible SQL injection: f-string value is passed directly to a SQL execute call."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    return subprocess.run(f\"ping -c 1 {host}\", shell=True, check=False)",
+      "column_end": 72,
+      "column_start": 12,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-78"
+      ],
+      "description": "Possible command injection: subprocess is called with shell=True.",
+      "file": "app.py",
+      "finding_id": "opengrep-948d5d8102a95d1faefc04b6",
+      "fingerprint": "948d5d8102a95d1faefc04b6",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 18,
+      "line_start": 18,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A03:2021-Injection"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-78",
+        "owasp": "A03:2021-Injection"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.python.command-injection.shell-true",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Possible command injection: subprocess is called with shell=True."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    return pickle.loads(raw)",
+      "column_end": 29,
+      "column_start": 12,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization: pickle.loads can execute attacker-controlled code.",
+      "file": "app.py",
+      "finding_id": "opengrep-96b8a45bcc8b8cf2ff4202fc",
+      "fingerprint": "96b8a45bcc8b8cf2ff4202fc",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 22,
+      "line_start": 22,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [
+        "A08:2021-Software and Data Integrity Failures"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-502",
+        "owasp": "A08:2021-Software and Data Integrity Failures"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.python.unsafe-deserialization.pickle-loads",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Unsafe deserialization: pickle.loads can execute attacker-controlled code."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    return hashlib.md5(password.encode()).hexdigest()",
+      "column_end": 42,
+      "column_start": 12,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-327"
+      ],
+      "description": "Weak cryptography: MD5 should not be used for security-sensitive hashing.",
+      "file": "app.py",
+      "finding_id": "opengrep-d1c5db9ad8eadf4e82650918",
+      "fingerprint": "d1c5db9ad8eadf4e82650918",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 26,
+      "line_start": 26,
+      "original_category": "security",
+      "original_severity": "WARNING",
+      "owasp": [],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-327"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.python.weak-crypto.md5",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "MEDIUM",
+      "status": "OPEN",
+      "title": "Weak cryptography: MD5 should not be used for security-sensitive hashing."
+    },
+    {
+      "category": "SAST",
+      "code_snippet": "    os.system(f\"rm -rf {path}\")",
+      "column_end": 32,
+      "column_start": 5,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [
+        "CWE-78"
+      ],
+      "description": "Possible command injection: subprocess is called with shell=True.",
+      "file": "app.py",
+      "finding_id": "opengrep-f97a35ab66d12b54d3248003",
+      "fingerprint": "f97a35ab66d12b54d3248003",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 30,
+      "line_start": 30,
+      "original_category": "security",
+      "original_severity": "ERROR",
+      "owasp": [
+        "A03:2021-Injection"
+      ],
+      "package": null,
+      "raw_metadata": {
+        "category": "security",
+        "cwe": "CWE-78",
+        "owasp": "A03:2021-Injection"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": null,
+      "rule_id": "rules.opengrep.custom.python.command-injection.shell-true",
+      "scanner": "OpenGrep",
+      "secret_type": null,
+      "severity": "HIGH",
+      "status": "OPEN",
+      "title": "Possible command injection: subprocess is called with shell=True."
+    },
+    {
+      "category": "SECRETS",
+      "code_snippet": "[REDACTED]",
+      "column_end": null,
+      "column_start": null,
+      "confidence": null,
+      "cve": null,
+      "cvss": null,
+      "cwe": [],
+      "description": "Potential secret detected. The matched value was redacted.",
+      "file": "app.py",
+      "finding_id": "trivy-f4e2582cdd2f112fd27ce39b",
+      "fingerprint": "f4e2582cdd2f112fd27ce39b",
+      "fixed_version": null,
+      "installed_version": null,
+      "line_end": 7,
+      "line_start": 7,
+      "original_category": null,
+      "original_severity": "CRITICAL",
+      "owasp": [],
+      "package": null,
+      "raw_metadata": {
+        "Category": "Stripe",
+        "EndLine": 7,
+        "Offset": 84,
+        "RuleID": "stripe-secret-token",
+        "Severity": "CRITICAL",
+        "StartLine": 7,
+        "Title": "Stripe Secret Key"
+      },
+      "references": [],
+      "related_finding_ids": [],
+      "remediation": "Rotate the credential if real, revoke the exposed value, and remove it from source history.",
+      "rule_id": "stripe-secret-token",
+      "scanner": "Trivy",
+      "secret_type": "Stripe",
+      "severity": "CRITICAL",
+      "status": "OPEN",
+      "title": "Stripe Secret Key"
+    }
+  ],
+  "metadata": {
+    "duration_seconds": 15.923,
+    "scan_id": "33902215-f311-4e5b-bd7d-5bc991b9e20b",
+    "scan_root": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\examples\\vulnerable",
+    "scanner_versions": {
+      "OpenGrep": "1.26.0",
+      "Trivy": "Version: 0.73.0",
+      "sast-scan": "0.1.0"
+    },
+    "started_at": "2026-08-08T17:05:47.469110+00:00",
+    "target": ".\\examples\\vulnerable\\app.py",
+    "target_kind": "file"
+  },
+  "policy_fail_on": "HIGH",
+  "policy_failed": true,
+  "scanners": [
+    {
+      "duration_seconds": 6.29,
+      "errors": [],
+      "findings": [
+        {
+          "category": "SAST",
+          "code_snippet": "API_KEY = \"sk_test_1234567890abcdef\"",
+          "column_end": 37,
+          "column_start": 1,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-798"
+          ],
+          "description": "Potential hardcoded secret detected. Rotate the value if it is real.",
+          "file": "app.py",
+          "finding_id": "opengrep-31d1b4b64eede048448aa045",
+          "fingerprint": "31d1b4b64eede048448aa045",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 7,
+          "line_start": 7,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A07:2021-Identification and Authentication Failures"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-798",
+            "owasp": "A07:2021-Identification and Authentication Failures"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.generic.hardcoded-secret",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Potential hardcoded secret detected. Rotate the value if it is real."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{username}'\")",
+          "column_end": 22,
+          "column_start": 11,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-89"
+          ],
+          "description": "Possible SQL injection: f-string value is passed directly to a SQL execute call.",
+          "file": "app.py",
+          "finding_id": "opengrep-1cd1322aa8a00b4de0bb8bd6",
+          "fingerprint": "1cd1322aa8a00b4de0bb8bd6",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 13,
+          "line_start": 13,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A03:2021-Injection"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-89",
+            "owasp": "A03:2021-Injection",
+            "references": [
+              "https://cwe.mitre.org/data/definitions/89.html"
+            ]
+          },
+          "references": [
+            "https://cwe.mitre.org/data/definitions/89.html"
+          ],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.python.sql-injection.f-string-execute",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Possible SQL injection: f-string value is passed directly to a SQL execute call."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    return subprocess.run(f\"ping -c 1 {host}\", shell=True, check=False)",
+          "column_end": 72,
+          "column_start": 12,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-78"
+          ],
+          "description": "Possible command injection: subprocess is called with shell=True.",
+          "file": "app.py",
+          "finding_id": "opengrep-948d5d8102a95d1faefc04b6",
+          "fingerprint": "948d5d8102a95d1faefc04b6",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 18,
+          "line_start": 18,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A03:2021-Injection"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-78",
+            "owasp": "A03:2021-Injection"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.python.command-injection.shell-true",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Possible command injection: subprocess is called with shell=True."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    return pickle.loads(raw)",
+          "column_end": 29,
+          "column_start": 12,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-502"
+          ],
+          "description": "Unsafe deserialization: pickle.loads can execute attacker-controlled code.",
+          "file": "app.py",
+          "finding_id": "opengrep-96b8a45bcc8b8cf2ff4202fc",
+          "fingerprint": "96b8a45bcc8b8cf2ff4202fc",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 22,
+          "line_start": 22,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [
+            "A08:2021-Software and Data Integrity Failures"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-502",
+            "owasp": "A08:2021-Software and Data Integrity Failures"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.python.unsafe-deserialization.pickle-loads",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Unsafe deserialization: pickle.loads can execute attacker-controlled code."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    return hashlib.md5(password.encode()).hexdigest()",
+          "column_end": 42,
+          "column_start": 12,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-327"
+          ],
+          "description": "Weak cryptography: MD5 should not be used for security-sensitive hashing.",
+          "file": "app.py",
+          "finding_id": "opengrep-d1c5db9ad8eadf4e82650918",
+          "fingerprint": "d1c5db9ad8eadf4e82650918",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 26,
+          "line_start": 26,
+          "original_category": "security",
+          "original_severity": "WARNING",
+          "owasp": [],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-327"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.python.weak-crypto.md5",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "MEDIUM",
+          "status": "OPEN",
+          "title": "Weak cryptography: MD5 should not be used for security-sensitive hashing."
+        },
+        {
+          "category": "SAST",
+          "code_snippet": "    os.system(f\"rm -rf {path}\")",
+          "column_end": 32,
+          "column_start": 5,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [
+            "CWE-78"
+          ],
+          "description": "Possible command injection: subprocess is called with shell=True.",
+          "file": "app.py",
+          "finding_id": "opengrep-f97a35ab66d12b54d3248003",
+          "fingerprint": "f97a35ab66d12b54d3248003",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 30,
+          "line_start": 30,
+          "original_category": "security",
+          "original_severity": "ERROR",
+          "owasp": [
+            "A03:2021-Injection"
+          ],
+          "package": null,
+          "raw_metadata": {
+            "category": "security",
+            "cwe": "CWE-78",
+            "owasp": "A03:2021-Injection"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": null,
+          "rule_id": "rules.opengrep.custom.python.command-injection.shell-true",
+          "scanner": "OpenGrep",
+          "secret_type": null,
+          "severity": "HIGH",
+          "status": "OPEN",
+          "title": "Possible command injection: subprocess is called with shell=True."
+        }
+      ],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-file\\raw\\33902215-f311-4e5b-bd7d-5bc991b9e20b\\opengrep.json",
+      "scanner": "OpenGrep",
+      "status": "SUCCESS",
+      "version": "1.26.0",
+      "warnings": []
+    },
+    {
+      "duration_seconds": 9.631,
+      "errors": [],
+      "findings": [
+        {
+          "category": "SECRETS",
+          "code_snippet": "[REDACTED]",
+          "column_end": null,
+          "column_start": null,
+          "confidence": null,
+          "cve": null,
+          "cvss": null,
+          "cwe": [],
+          "description": "Potential secret detected. The matched value was redacted.",
+          "file": "app.py",
+          "finding_id": "trivy-f4e2582cdd2f112fd27ce39b",
+          "fingerprint": "f4e2582cdd2f112fd27ce39b",
+          "fixed_version": null,
+          "installed_version": null,
+          "line_end": 7,
+          "line_start": 7,
+          "original_category": null,
+          "original_severity": "CRITICAL",
+          "owasp": [],
+          "package": null,
+          "raw_metadata": {
+            "Category": "Stripe",
+            "EndLine": 7,
+            "Offset": 84,
+            "RuleID": "stripe-secret-token",
+            "Severity": "CRITICAL",
+            "StartLine": 7,
+            "Title": "Stripe Secret Key"
+          },
+          "references": [],
+          "related_finding_ids": [],
+          "remediation": "Rotate the credential if real, revoke the exposed value, and remove it from source history.",
+          "rule_id": "stripe-secret-token",
+          "scanner": "Trivy",
+          "secret_type": "Stripe",
+          "severity": "CRITICAL",
+          "status": "OPEN",
+          "title": "Stripe Secret Key"
+        }
+      ],
+      "raw_output_path": "C:\\Users\\adity\\OneDrive\\Desktop\\SAST_SCAN\\reports-file\\raw\\33902215-f311-4e5b-bd7d-5bc991b9e20b\\trivy.json",
+      "scanner": "Trivy",
+      "status": "SUCCESS",
+      "version": "Version: 0.73.0",
+      "warnings": []
+    }
+  ],
+  "status": "FAILED",
+  "summary": {
+    "CRITICAL": 1,
+    "HIGH": 4,
+    "INFO": 0,
+    "LOW": 0,
+    "MEDIUM": 2,
+    "TOTAL": 7,
+    "UNKNOWN": 0
+  },
+  "warnings": []
+}

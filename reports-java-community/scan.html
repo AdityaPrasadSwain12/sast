@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sast-scan report</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #18212f; background: #f5f7fa; }
+    header { background: #172033; color: white; padding: 28px 40px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1, h2, h3 { margin: 0 0 12px; }
+    section { margin: 22px 0; background: white; border: 1px solid #dfe5ee; border-radius: 8px; padding: 22px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+    .metric { border: 1px solid #dfe5ee; border-radius: 8px; padding: 16px; background: #fbfcfe; }
+    .metric strong { display: block; font-size: 26px; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e6ebf2; text-align: left; padding: 10px; vertical-align: top; }
+    th { background: #f0f3f8; }
+    .sev-CRITICAL { color: #8f1111; font-weight: 700; }
+    .sev-HIGH { color: #b13f00; font-weight: 700; }
+    .sev-MEDIUM { color: #8a6500; font-weight: 700; }
+    .sev-LOW { color: #2f6b2f; font-weight: 700; }
+    .finding { border-top: 4px solid #c8d1dd; }
+    pre { white-space: pre-wrap; background: #101828; color: #f8fafc; padding: 12px; border-radius: 6px; overflow-x: auto; }
+    footer { color: #64748b; text-align: center; padding: 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Security Assessment Report</h1>
+    <div>.\target.java | FAILED | Scan 28c02b2f-2922-4f91-acc5-cac177f2f1e1</div>
+  </header>
+  <main>
+    <section>
+      <h2>Executive Summary</h2>
+      <div class="grid">
+        <div class="metric">Overall Status<strong>FAILED</strong></div>
+        <div class="metric">Total Findings<strong>8</strong></div>
+        <div class="metric">Critical<strong>0</strong></div>
+        <div class="metric">High<strong>2</strong></div>
+        <div class="metric">Files Scanned<strong>1</strong></div>
+        <div class="metric">Lines Scanned<strong>48</strong></div>
+        <div class="metric">Duration<strong>118.474s</strong></div>
+      </div>
+      <p><strong>Project/Repository:</strong> .\target.java</p>
+      <p><strong>Scan Date:</strong> 2026-08-09T08:07:23.875634+00:00</p>
+      <p><strong>Policy:</strong> fail on HIGH</p>
+    </section>
+    <section>
+      <h2>Scan Coverage</h2>
+      <table>
+        <tbody>
+          <tr><th>Target Type</th><td>file</td></tr>
+          <tr><th>Scan Root</th><td>C:\Users\adity\OneDrive\Desktop\SAST_SCAN</td></tr>
+          <tr><th>Files Scanned</th><td>1</td></tr>
+          <tr><th>Lines Scanned</th><td>48</td></tr>
+          <tr><th>Bytes Scanned</th><td>1751</td></tr>
+          <tr><th>Binary Files Skipped For Line Count</th><td>0</td></tr>
+        </tbody>
+      </table>
+      <h3>Detected Languages / File Types</h3>
+      <table><thead><tr><th>Language or File Type</th><th>Files</th></tr></thead><tbody><tr><td>Java</td><td>1</td></tr></tbody></table>
+      <h3>Scanner Execution</h3>
+      <table><thead><tr><th>Scanner</th><th>Status</th><th>Version</th><th>Raw Findings</th><th>Parsed Findings</th><th>Dropped Findings</th><th>Duration</th></tr></thead><tbody><tr><td>OpenGrep</td><td>SUCCESS</td><td>1.26.0</td><td>8</td><td>8</td><td>0</td><td>109.646s</td></tr>
+<tr><td>Trivy</td><td>SUCCESS</td><td>Version: 0.73.0</td><td>0</td><td>0</td><td>0</td><td>8.823s</td></tr></tbody></table>
+    </section>
+    <section>
+      <h2>Severity Summary</h2>
+      <table><thead><tr><th>Severity</th><th>Count</th><th>Percentage</th></tr></thead><tbody><tr><td>CRITICAL</td><td>0</td><td>0.0%</td></tr>
+<tr><td>HIGH</td><td>2</td><td>25.0%</td></tr>
+<tr><td>MEDIUM</td><td>5</td><td>62.5%</td></tr>
+<tr><td>LOW</td><td>0</td><td>0.0%</td></tr>
+<tr><td>INFO</td><td>1</td><td>12.5%</td></tr>
+<tr><td>UNKNOWN</td><td>0</td><td>0.0%</td></tr></tbody></table>
+      <h3>Category Distribution</h3>
+      <table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>SAST</td><td>8</td></tr></tbody></table>
+    </section>
+    <section>
+      <h2>Detailed Findings</h2>
+      
+      <article class="finding">
+        <h3><span class="sev-HIGH">[HIGH]</span> Potential hardcoded secret detected. Rotate the value if it is real.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-228bebad95d56fb335d78196</td></tr><tr><th>Severity</th><td>HIGH</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.custom.generic.hardcoded-secret</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>8</td></tr><tr><th>CWE</th><td>CWE-798</td></tr><tr><th>OWASP</th><td>A07:2021-Identification and Authentication Failures</td></tr></table>
+        <h4>Description</h4><p>Potential hardcoded secret detected. Rotate the value if it is real.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Review scanner guidance and apply the least-risk secure fix.</p>
+        <pre>    private static final String ADMIN_PASSWORD = &quot;SuperSecret123&quot;;</pre>
+        
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-INFO">[INFO]</span> A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-b86b600c5eae937c5180f22f</td></tr><tr><th>Severity</th><td>INFO</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.community.generic.secrets.gitleaks.hashicorp-tf-password</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>8</td></tr><tr><th>CWE</th><td>CWE-798: Use of Hard-coded Credentials</td></tr><tr><th>OWASP</th><td>A07:2021 - Identification and Authentication Failures</td></tr></table>
+        <h4>Description</h4><p>A gitleaks hashicorp-tf-password was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module).</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Review scanner guidance and apply the least-risk secure fix.</p>
+        <pre>    private static final String ADMIN_PASSWORD = &quot;SuperSecret123&quot;;</pre>
+        <h4>References</h4><ul><li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-HIGH">[HIGH]</span> Possible SQL injection: SQL query is built with string concatenation and executed.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-f75ec4928179637b65ad7d7d</td></tr><tr><th>Severity</th><td>HIGH</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.custom.java.sql-injection.string-concat-execute</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>20</td></tr><tr><th>CWE</th><td>CWE-89</td></tr><tr><th>OWASP</th><td>A03:2021-Injection</td></tr></table>
+        <h4>Description</h4><p>Possible SQL injection: SQL query is built with string concatenation and executed.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Use PreparedStatement with parameter binding instead of concatenating user input into SQL.</p>
+        <pre>            String query = &quot;SELECT * FROM users WHERE id = &quot; + userId;
+            ResultSet rs = stmt.executeQuery(query);</pre>
+        <h4>References</h4><ul><li><a href="https://cwe.mitre.org/data/definitions/89.html">https://cwe.mitre.org/data/definitions/89.html</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-MEDIUM">[MEDIUM]</span> Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using &#x27;connection.prepareStatement&#x27;.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-3d34aa152cec2114dad172d3</td></tr><tr><th>Severity</th><td>MEDIUM</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.community.java.lang.security.audit.sqli.jdbc-sqli</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>21</td></tr><tr><th>CWE</th><td>CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#x27;SQL Injection&#x27;)</td></tr><tr><th>OWASP</th><td>A01:2017 - Injection, A03:2021 - Injection</td></tr></table>
+        <h4>Description</h4><p>Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using &#x27;connection.prepareStatement&#x27;.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Review scanner guidance and apply the least-risk secure fix.</p>
+        <pre>            ResultSet rs = stmt.executeQuery(query);</pre>
+        <h4>References</h4><ul><li><a href="https://owasp.org/Top10/A03_2021-Injection">https://owasp.org/Top10/A03_2021-Injection</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-MEDIUM">[MEDIUM]</span> Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-50199a7b4672e77e8dfd4963</td></tr><tr><th>Severity</th><td>MEDIUM</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.custom.java.empty-catch.swallowed-exception</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>26</td></tr><tr><th>CWE</th><td>CWE-390</td></tr></table>
+        <h4>Description</h4><p>Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.</p>
+        <pre>        } catch (Exception e) {
+            // VULN 3: Empty exception handler (CWE-390) – silently swallows all errors
+        }</pre>
+        <h4>References</h4><ul><li><a href="https://cwe.mitre.org/data/definitions/390.html">https://cwe.mitre.org/data/definitions/390.html</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-MEDIUM">[MEDIUM]</span> Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-a507c8585058f2bbd161fd41</td></tr><tr><th>Severity</th><td>MEDIUM</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.custom.java.weak-crypto.md5</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>34</td></tr><tr><th>CWE</th><td>CWE-327</td></tr></table>
+        <h4>Description</h4><p>Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor.</p>
+        <pre>            MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</pre>
+        <h4>References</h4><ul><li><a href="https://cwe.mitre.org/data/definitions/327.html">https://cwe.mitre.org/data/definitions/327.html</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-MEDIUM">[MEDIUM]</span> Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-62c1712a9469f86cbd4172f8</td></tr><tr><th>Severity</th><td>MEDIUM</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.community.java.lang.security.audit.crypto.use-of-md5</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>34</td></tr><tr><th>CWE</th><td>CWE-328: Use of Weak Hash</td></tr><tr><th>OWASP</th><td>A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic Failures</td></tr></table>
+        <h4>Description</h4><p>Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Review scanner guidance and apply the least-risk secure fix.</p>
+        <pre>            MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</pre>
+        <h4>References</h4><ul><li><a href="https://owasp.org/Top10/A02_2021-Cryptographic_Failures">https://owasp.org/Top10/A02_2021-Cryptographic_Failures</a></li></ul>
+      </article>
+    
+
+      <article class="finding">
+        <h3><span class="sev-MEDIUM">[MEDIUM]</span> Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.</h3>
+        <table><tr><th>Finding ID</th><td>opengrep-020e2a6a66af19351b828d72</td></tr><tr><th>Severity</th><td>MEDIUM</td></tr><tr><th>Scanner</th><td>OpenGrep</td></tr><tr><th>Rule ID</th><td>rules.opengrep.custom.java.empty-catch.swallowed-exception</td></tr><tr><th>Category</th><td>SAST</td></tr><tr><th>File</th><td>target.java</td></tr><tr><th>Line</th><td>37</td></tr><tr><th>CWE</th><td>CWE-390</td></tr></table>
+        <h4>Description</h4><p>Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.</p>
+        <h4>Security Impact</h4><p>This finding may increase application or supply-chain risk. Validate exploitability in context and prioritize according to severity, exposure, and business impact.</p>
+        <h4>Remediation</h4><p>Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.</p>
+        <pre>        } catch (Exception e) {
+            // Another empty handler
+        }</pre>
+        <h4>References</h4><ul><li><a href="https://cwe.mitre.org/data/definitions/390.html">https://cwe.mitre.org/data/definitions/390.html</a></li></ul>
+      </article>
+    
+    </section>
+    <section>
+      <h2>Remediation Summary</h2>
+      <ol>
+        <li>Fix all critical findings immediately.</li>
+        <li>Fix high severity dependency and SAST findings before release.</li>
+        <li>Rotate any exposed secrets and remove them from source history.</li>
+        <li>Resolve infrastructure and configuration issues according to scanner guidance.</li>
+      </ol>
+    </section>
+    
+  </main>
+  <footer>Generated by sast-scan at 2026-08-09T08:07:23.881235+00:00</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fe256-e98d-7e42-98c4-a84dffc1daeb",
+  "CreatedAt": "2026-08-08T17:06:14.541937349Z",
+  "ArtifactID": "sha256:021cdd5dce8405bd53f82ed68b444645be7b75172c4a38cd54923b4d9223643a",
+  "ArtifactName": "/src",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/octocat/Hello-World",
+    "Branch": "master",
+    "Commit": "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d",
+    "CommitMsg": "Merge pull request #6 from Spaceghost/patch-1\n\nNew line at end of file.",
+    "Author": "The Octocat \u003coctocat@nowhere.com\u003e",
+    "Committer": "The Octocat \u003coctocat@nowhere.com\u003e"
+  }
+}

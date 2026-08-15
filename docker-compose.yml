@@ -1,0 +1,12 @@
+services:
+  opengrep:
+    build:
+      context: ./docker/opengrep
+    image: sast-scan/opengrep:latest
+    profiles: ["build-only"]
+
+  trivy:
+    build:
+      context: ./docker/trivy
+    image: sast-scan/trivy:latest
+    profiles: ["build-only"]

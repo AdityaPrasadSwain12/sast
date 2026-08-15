@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "sast-scan",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/opengrep/opengrep",
+          "rules": []
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "properties": {
+        "coverage": {
+          "files_scanned": 2,
+          "lines_scanned": 25,
+          "bytes_scanned": 621,
+          "binary_files_skipped_for_line_count": 0,
+          "extensions": {
+            ".py": 1,
+            ".txt": 1
+          },
+          "languages": {
+            "Python": 1,
+            "Python Dependencies": 1
+          },
+          "excluded_patterns": [
+            ".git",
+            "node_modules",
+            ".venv",
+            "venv",
+            "__pycache__",
+            "dist",
+            "build",
+            "target"
+          ]
+        },
+        "summary": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0,
+          "INFO": 0,
+          "UNKNOWN": 0,
+          "TOTAL": 0
+        }
+      },
+      "results": []
+    }
+  ]
+}

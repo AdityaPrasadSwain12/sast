@@ -1,0 +1,491 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "sast-scan",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/opengrep/opengrep",
+          "rules": [
+            {
+              "id": "rules.opengrep.custom.generic.hardcoded-secret",
+              "name": "Potential hardcoded secret detected. Rotate the value if it is real.",
+              "shortDescription": {
+                "text": "Potential hardcoded secret detected. Rotate the value if it is real."
+              },
+              "fullDescription": {
+                "text": "Potential hardcoded secret detected. Rotate the value if it is real."
+              },
+              "helpUri": null,
+              "properties": {
+                "category": "SAST",
+                "scanner": "OpenGrep",
+                "severity": "HIGH"
+              }
+            },
+            {
+              "id": "rules.opengrep.custom.java.sql-injection.string-concat-execute",
+              "name": "Possible SQL injection: SQL query is built with string concatenation and executed.",
+              "shortDescription": {
+                "text": "Possible SQL injection: SQL query is built with string concatenation and executed."
+              },
+              "fullDescription": {
+                "text": "Possible SQL injection: SQL query is built with string concatenation and executed."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/89.html",
+              "properties": {
+                "category": "SAST",
+                "scanner": "OpenGrep",
+                "severity": "HIGH"
+              }
+            },
+            {
+              "id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+              "name": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+              "shortDescription": {
+                "text": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+              },
+              "fullDescription": {
+                "text": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/390.html",
+              "properties": {
+                "category": "SAST",
+                "scanner": "OpenGrep",
+                "severity": "MEDIUM"
+              }
+            },
+            {
+              "id": "rules.opengrep.custom.java.weak-crypto.md5",
+              "name": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.",
+              "shortDescription": {
+                "text": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+              },
+              "fullDescription": {
+                "text": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+              },
+              "helpUri": "https://cwe.mitre.org/data/definitions/327.html",
+              "properties": {
+                "category": "SAST",
+                "scanner": "OpenGrep",
+                "severity": "MEDIUM"
+              }
+            }
+          ]
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "properties": {
+        "coverage": {
+          "files_scanned": 1,
+          "lines_scanned": 48,
+          "bytes_scanned": 1751,
+          "binary_files_skipped_for_line_count": 0,
+          "extensions": {
+            ".java": 1
+          },
+          "languages": {
+            "Java": 1
+          },
+          "excluded_patterns": [
+            ".git",
+            "node_modules",
+            ".venv",
+            "venv",
+            "__pycache__",
+            "dist",
+            "build",
+            "target"
+          ]
+        },
+        "summary": {
+          "CRITICAL": 0,
+          "HIGH": 2,
+          "MEDIUM": 3,
+          "LOW": 0,
+          "INFO": 0,
+          "UNKNOWN": 0,
+          "TOTAL": 5
+        }
+      },
+      "results": [
+        {
+          "ruleId": "rules.opengrep.custom.generic.hardcoded-secret",
+          "level": "error",
+          "message": {
+            "text": "Potential hardcoded secret detected. Rotate the value if it is real."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "target.java"
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 39,
+                  "endLine": 8,
+                  "endColumn": 66
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "sastScanFingerprint": "228bebad95d56fb335d78196"
+          },
+          "properties": {
+            "finding_id": "opengrep-228bebad95d56fb335d78196",
+            "scanner": "OpenGrep",
+            "category": "SAST",
+            "rule_id": "rules.opengrep.custom.generic.hardcoded-secret",
+            "title": "Potential hardcoded secret detected. Rotate the value if it is real.",
+            "description": "Potential hardcoded secret detected. Rotate the value if it is real.",
+            "severity": "HIGH",
+            "original_severity": "ERROR",
+            "confidence": null,
+            "status": "OPEN",
+            "file": "target.java",
+            "line_start": 8,
+            "line_end": 8,
+            "column_start": 39,
+            "column_end": 66,
+            "code_snippet": "    private static final String ADMIN_PASSWORD = \"SuperSecret123\";",
+            "package": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cve": null,
+            "cwe": [
+              "CWE-798"
+            ],
+            "owasp": [
+              "A07:2021-Identification and Authentication Failures"
+            ],
+            "cvss": null,
+            "secret_type": null,
+            "remediation": null,
+            "references": [],
+            "fingerprint": "228bebad95d56fb335d78196",
+            "related_finding_ids": [],
+            "original_category": "security",
+            "raw_metadata": {
+              "scanner_fingerprint": "806cd96beb037530a482f035c12b104412a77cd707cdd0a488faea8cbb53f4ba9d820095804b96c942aacc7b624e1803cf297d81407b98118be0f580abdb48ea_0",
+              "validation_state": "NO_VALIDATOR",
+              "engine_kind": "OSS",
+              "original_path": "/src/target.java",
+              "metadata": {
+                "category": "security",
+                "cwe": "CWE-798",
+                "owasp": "A07:2021-Identification and Authentication Failures"
+              }
+            }
+          }
+        },
+        {
+          "ruleId": "rules.opengrep.custom.java.sql-injection.string-concat-execute",
+          "level": "error",
+          "message": {
+            "text": "Possible SQL injection: SQL query is built with string concatenation and executed."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "target.java"
+                },
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 13,
+                  "endLine": 21,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "sastScanFingerprint": "f75ec4928179637b65ad7d7d"
+          },
+          "properties": {
+            "finding_id": "opengrep-f75ec4928179637b65ad7d7d",
+            "scanner": "OpenGrep",
+            "category": "SAST",
+            "rule_id": "rules.opengrep.custom.java.sql-injection.string-concat-execute",
+            "title": "Possible SQL injection: SQL query is built with string concatenation and executed.",
+            "description": "Possible SQL injection: SQL query is built with string concatenation and executed.",
+            "severity": "HIGH",
+            "original_severity": "ERROR",
+            "confidence": null,
+            "status": "OPEN",
+            "file": "target.java",
+            "line_start": 20,
+            "line_end": 21,
+            "column_start": 13,
+            "column_end": 53,
+            "code_snippet": "            String query = \"SELECT * FROM users WHERE id = \" + userId;\n            ResultSet rs = stmt.executeQuery(query);",
+            "package": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cve": null,
+            "cwe": [
+              "CWE-89"
+            ],
+            "owasp": [
+              "A03:2021-Injection"
+            ],
+            "cvss": null,
+            "secret_type": null,
+            "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL.",
+            "references": [
+              "https://cwe.mitre.org/data/definitions/89.html"
+            ],
+            "fingerprint": "f75ec4928179637b65ad7d7d",
+            "related_finding_ids": [],
+            "original_category": "security",
+            "raw_metadata": {
+              "scanner_fingerprint": "0dfe46a8481f7c41b0ef8b233afd5bf48ee2fa3ded70a10885d07188c463e0c81d7c8c0a2d2de7246caf8f578514974984e31f84895bb0599e33167479e4af73_0",
+              "validation_state": "NO_VALIDATOR",
+              "engine_kind": "OSS",
+              "original_path": "/src/target.java",
+              "metadata": {
+                "category": "security",
+                "cwe": "CWE-89",
+                "owasp": "A03:2021-Injection",
+                "remediation": "Use PreparedStatement with parameter binding instead of concatenating user input into SQL.",
+                "references": [
+                  "https://cwe.mitre.org/data/definitions/89.html"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "ruleId": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+          "level": "warning",
+          "message": {
+            "text": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "target.java"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 11,
+                  "endLine": 28,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "sastScanFingerprint": "50199a7b4672e77e8dfd4963"
+          },
+          "properties": {
+            "finding_id": "opengrep-50199a7b4672e77e8dfd4963",
+            "scanner": "OpenGrep",
+            "category": "SAST",
+            "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+            "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+            "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+            "severity": "MEDIUM",
+            "original_severity": "WARNING",
+            "confidence": null,
+            "status": "OPEN",
+            "file": "target.java",
+            "line_start": 26,
+            "line_end": 28,
+            "column_start": 11,
+            "column_end": 10,
+            "code_snippet": "        } catch (Exception e) {\n            // VULN 3: Empty exception handler (CWE-390) \u2013 silently swallows all errors\n        }",
+            "package": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cve": null,
+            "cwe": [
+              "CWE-390"
+            ],
+            "owasp": [],
+            "cvss": null,
+            "secret_type": null,
+            "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+            "references": [
+              "https://cwe.mitre.org/data/definitions/390.html"
+            ],
+            "fingerprint": "50199a7b4672e77e8dfd4963",
+            "related_finding_ids": [],
+            "original_category": "security",
+            "raw_metadata": {
+              "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_0",
+              "validation_state": "NO_VALIDATOR",
+              "engine_kind": "OSS",
+              "original_path": "/src/target.java",
+              "metadata": {
+                "category": "security",
+                "cwe": "CWE-390",
+                "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+                "references": [
+                  "https://cwe.mitre.org/data/definitions/390.html"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "ruleId": "rules.opengrep.custom.java.weak-crypto.md5",
+          "level": "warning",
+          "message": {
+            "text": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "target.java"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 32,
+                  "endLine": 34,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "sastScanFingerprint": "a507c8585058f2bbd161fd41"
+          },
+          "properties": {
+            "finding_id": "opengrep-a507c8585058f2bbd161fd41",
+            "scanner": "OpenGrep",
+            "category": "SAST",
+            "rule_id": "rules.opengrep.custom.java.weak-crypto.md5",
+            "title": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.",
+            "description": "Weak cryptography: Java MD5 hashing should not be used for security-sensitive hashing.",
+            "severity": "MEDIUM",
+            "original_severity": "WARNING",
+            "confidence": null,
+            "status": "OPEN",
+            "file": "target.java",
+            "line_start": 34,
+            "line_end": 34,
+            "column_start": 32,
+            "column_end": 64,
+            "code_snippet": "            MessageDigest md = MessageDigest.getInstance(\"MD5\");",
+            "package": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cve": null,
+            "cwe": [
+              "CWE-327"
+            ],
+            "owasp": [],
+            "cvss": null,
+            "secret_type": null,
+            "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor.",
+            "references": [
+              "https://cwe.mitre.org/data/definitions/327.html"
+            ],
+            "fingerprint": "a507c8585058f2bbd161fd41",
+            "related_finding_ids": [],
+            "original_category": "security",
+            "raw_metadata": {
+              "scanner_fingerprint": "7e87019244889a51c9b7df58674b819fbebedb7b04e0d59121bd5c98f2f1f6651d76d3bb62434fcd96a13fae647f29619ec9ce33edd7eb52acac0e1ad8642e30_0",
+              "validation_state": "NO_VALIDATOR",
+              "engine_kind": "OSS",
+              "original_path": "/src/target.java",
+              "metadata": {
+                "category": "security",
+                "cwe": "CWE-327",
+                "remediation": "Use a modern password hashing algorithm such as Argon2, bcrypt, scrypt, or PBKDF2 with a strong salt and work factor.",
+                "references": [
+                  "https://cwe.mitre.org/data/definitions/327.html"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "ruleId": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+          "level": "warning",
+          "message": {
+            "text": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "target.java"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 11,
+                  "endLine": 39,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "sastScanFingerprint": "020e2a6a66af19351b828d72"
+          },
+          "properties": {
+            "finding_id": "opengrep-020e2a6a66af19351b828d72",
+            "scanner": "OpenGrep",
+            "category": "SAST",
+            "rule_id": "rules.opengrep.custom.java.empty-catch.swallowed-exception",
+            "title": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+            "description": "Empty catch block: exceptions are swallowed without logging, handling, or rethrowing.",
+            "severity": "MEDIUM",
+            "original_severity": "WARNING",
+            "confidence": null,
+            "status": "OPEN",
+            "file": "target.java",
+            "line_start": 37,
+            "line_end": 39,
+            "column_start": 11,
+            "column_end": 10,
+            "code_snippet": "        } catch (Exception e) {\n            // Another empty handler\n        }",
+            "package": null,
+            "installed_version": null,
+            "fixed_version": null,
+            "cve": null,
+            "cwe": [
+              "CWE-390"
+            ],
+            "owasp": [],
+            "cvss": null,
+            "secret_type": null,
+            "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+            "references": [
+              "https://cwe.mitre.org/data/definitions/390.html"
+            ],
+            "fingerprint": "020e2a6a66af19351b828d72",
+            "related_finding_ids": [],
+            "original_category": "security",
+            "raw_metadata": {
+              "scanner_fingerprint": "cc407b442690355ec3d0b1a9410007be02f842636926e7e7be054bd19460f81b85c875c7d6c3d8eee6b5eb498c6ed810022e9fd10236b01968356012d1fea14c_1",
+              "validation_state": "NO_VALIDATOR",
+              "engine_kind": "OSS",
+              "original_path": "/src/target.java",
+              "metadata": {
+                "category": "security",
+                "cwe": "CWE-390",
+                "remediation": "Handle the exception, log enough diagnostic context, or rethrow a domain-specific exception.",
+                "references": [
+                  "https://cwe.mitre.org/data/definitions/390.html"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
