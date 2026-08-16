@@ -2,8 +2,15 @@ import type { ScanJob, ScanReport, TargetType } from "./types";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
 
+export function resolveApiUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  const base = API_BASE.replace(/\/+$/, "");
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${normalizedPath}`;
+}
+
 async function jsonRequest<T>(url: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${url}`, init);
+  const response = await fetch(resolveApiUrl(url), { ...init, cache: "no-store" });
   if (!response.ok) {
     const body = await response.json().catch(() => ({ error: response.statusText }));
     throw new Error(body.error ?? response.statusText);
@@ -27,7 +34,7 @@ export async function createLocalPathScan(localPath: string): Promise<ScanJob> {
   });
 }
 
-export async function createUploadScan(targetType: Extract<TargetType, "file" | "folder">, files: File[]): Promise<ScanJob> {
+export async function createUploadScan(targetType: Extract<TargetType, "file" | "folder" | "zip">, files: File[]): Promise<ScanJob> {
   const form = new FormData();
   form.append("target_type", targetType);
   files.forEach((file) => {

@@ -18,12 +18,14 @@ class ScanJob(models.Model):
         GITHUB = "github"
         FILE = "file"
         FOLDER = "folder"
+        ZIP = "zip"
         LOCAL_PATH = "local_path"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     target_type = models.CharField(max_length=32, choices=TargetType.choices)
     target_display = models.TextField()
     resolved_target = models.TextField(blank=True)
+    upload_dir = models.TextField(blank=True)
     status = models.CharField(max_length=16, choices=Status.choices, default=Status.QUEUED)
     progress_message = models.CharField(max_length=255, blank=True)
     output_dir = models.TextField(blank=True)

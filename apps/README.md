@@ -43,7 +43,18 @@ Supported scan inputs:
 github      public GitHub URL
 file        uploaded single file
 folder      uploaded folder/files
+zip         uploaded .zip archive, safely extracted before scanning
 local_path  local path inside the scanner workspace
+```
+
+Default upload limits:
+
+```text
+SAST_WEB_MAX_FILE_BYTES           25 MB single file
+SAST_WEB_MAX_FOLDER_BYTES         250 MB browser folder upload
+SAST_WEB_MAX_ZIP_BYTES            100 MB compressed ZIP
+SAST_WEB_MAX_ZIP_EXTRACTED_BYTES  300 MB extracted ZIP contents
+SAST_WEB_MAX_ZIP_FILES            10000 extracted files
 ```
 
 The web workflow uses the scanner's canonical report folder. Every new scan overwrites the latest report files:
@@ -82,7 +93,19 @@ http://127.0.0.1:8000
 Production build:
 
 ```powershell
+cd ..\..
+git submodule update --init --recursive
+python -m pip install -e .
+cd apps\frontend
 npm run build
+```
+
+The production build regenerates `public\rules-catalog.json` from `configs\scanner.yaml`, the configured OpenGrep sources, and the bundled inactive packs before Vite runs. It therefore requires Python 3.11+, PyYAML (installed by the project command above), and the community rules submodule. The generated file contains rule metadata only; detection patterns remain in their source YAML files.
+
+To refresh the catalogue without building the frontend:
+
+```powershell
+npm run generate:rules
 ```
 
 ## Architecture

@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run generate:rules",
     "build": "tsc && vite build",
+    "generate:rules": "python scripts/generate_rule_catalog.py",
     "preview": "vite preview"
   },
   "dependencies": {
